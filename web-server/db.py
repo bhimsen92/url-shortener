@@ -24,6 +24,8 @@ class DBMixin:
             cursor.execute(query, args)
             if query_type == "get":
                 return_value = cursor.fetchall()
+            elif query_type == "post":
+                session.commit()
             cursor.close()
         return return_value
 
