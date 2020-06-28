@@ -47,7 +47,7 @@ Steps for setting up postgres can be found [here](scripts/db_urls.sql)
 
 ### Webserver
 
-App serve is a simple flask application.
+App server is a simple flask application.
 
 ### How to run it.
 
