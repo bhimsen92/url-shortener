@@ -14,7 +14,8 @@ Implementation is based on the article from educative's system design course.
 This application still needs improvment, especially sharding the db. I am still trying to understand
 how logical/physical sharding is done and handled at the application level. I will update the repository as I learn more.
 
-High Level Application Design
+## High Level Application Design
+
 [picture here]
 
 ## Components
@@ -40,7 +41,7 @@ The python code for the above logic can be found [here](snowflake/id_generator.p
 Application makes use of partition techniques made available in postgres:12 release. Right now it partitions
 the `urls` table by hash and distributes this into 2 shards. In my opinion partition by hash does not seem to help in the long run. May be there is a way to readjust the shards when we add more db instances. If no such provision exists then we may have to create 100s machines upfront to support the partition by hash.
 
-Other way would be to logically shard the tables and scale it when the need arises. This has to be handled at the application level in my opinion as we have to maintain the shard metadata somewhere. I don't know how to achieve this at the moment. I will update the repo when understand how this can be achieved in the future.
+Other way would be to logically shard the tables and scale it when the need arises. This has to be handled at the application level in my opinion as we have to maintain the shard metadata somewhere. I don't know how to achieve this at the moment. I will update the repo when I understand how this can be achieved in the future.
 
 Steps for setting up postgres can be found [here](scripts/db_urls.sql)
 
