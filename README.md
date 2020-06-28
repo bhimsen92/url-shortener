@@ -29,9 +29,9 @@ The intuition is simple: date and time when converted to secods/milliseconds is 
 multiple machines as 2 machines can generate same timestamp when requested at the same time. So to avoid that
 we can append a machine id to the timestamp. But still we have a problem, if the service receives 100s requests in a given second/millisecond, timestamp+machine_id is not going to give us a unique number. So to avoid that, we need to append a counter to timestamp+machine_id string.
 
-Now we don't want to this string to be big. The generated string which is a number should fit inside a 64 bit number. So we can slice up 64 bit number into 3 parts and assign each part to timestamp, machine id and counter.
+Now we don't want this string to be big. The generated string which is a number should fit inside a 64 bit number. So we can slice up 64 bit number into 3 parts and assign each part to timestamp, machine id and counter.
 
-First 41 bits is for timestamp, this gives 69 years(2^41 seconds) worth of time before it overflows. Next 10 buts is for machine id. This gives us opportunity to extend the snowflake service to 2^10 instances. The rest
+First 41 bits is for timestamp, this gives 69 years(2^41 seconds) worth of time before it overflows. Next 10 bits is for machine id. This gives us opportunity to extend the snowflake service to 2^10 instances. The rest
 can be given to counter(2^13). So within a microsecond, the service can handle up to 2^13 requests.
 
 The python code for the above logic can be found [here](snowflake/id_generator.py)
